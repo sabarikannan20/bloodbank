@@ -1,0 +1,87 @@
+/*****************************************************************Blood Bank Application (DB Design)**********************************************************************************/
+
+Tables:
+
+    * blood_group (static)
+    * gender (static)
+    * hospital (static)
+    * user
+    * address
+    * blood_stock
+    * donor
+    * recipient
+
+blood_group (static):
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * type              VARCHAR(10)     NOT NULL
+
+gender (static):
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * description       VARCHAR(10)     NOT NULL
+
+hospital (static):
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * name              VARCHAR(255)    NOT NULL,
+    * address_id        INT             FOREIGN KEY (Reference table address column id),
+    * contact           BIGINT          NOT NULL    
+
+user:
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * first_name        VARCHAR(50)     NOT NULL,
+    * last_name         VARCHAR(50)     NOT NULL,
+    * username          VARCHAR(35)     UNIQUE KEY, NOT NULL,
+    * address_id        INT             FOREIGN KEY (Reference table address column id),
+    * blood_group_id    INT             FOREIGN KEY (Reference table blood_group column id),
+    * email             VARCHAR(50)     UNIQUE KEY, NOT NULL,
+    * mobile            BIGINT          UNIQUE KEY, NOT NULL,
+    * password          VARCHAR(32)     NOT NULL,
+    * dob               DATE            NOT NULL,
+    * gender_id         INT             FOREIGN KEY (Reference table gender column id),
+    * last_logged_in    TIMESTAMP       NULL
+
+address:
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * address1          VARCHAR(35)     NOT NULL,
+    * address2          VARCHAR(35)     NOT NULL,
+    * street            VARCHAR(20)     NOT NULL,
+    * city              VARCHAR(20)     NOT NULL,
+    * state             VARCHAR(35)     NOT NULL,
+    * pincode           INT(6)          NOT NULL
+
+blood_stock:
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * blood_group_id    INT             FOREIGN KEY (Reference table blood_group column id),
+    * stored_date       DATE            NOT NULL,
+    * expiry_date       DATE            NOT NULL,
+    * units             INT             NOT NULL,
+    * created_by        INT             FOREIGN KEY (Reference table user column id),
+    * created_at        TIMESTAMP       NOT NULL
+
+donor:
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * name              VARCHAR(50)     NOT NULL,
+    * age               INT             NOT NULL,
+    * address_id        INT             FOREIGN KEY (Reference table address column id),
+    * mobile            BIGINT          NOT NULL,
+    * donated_date      DATE            NULL,
+    * blood_group_id    INT             FOREIGN KEY (Reference table blood_group column id),
+    * gender_id         INT             FOREIGN KEY (Reference table gender column id),
+    * created_by        INT             FOREIGN KEY (Reference table user column id),
+    * created_at        TIMESTAMP       NOT NULL
+
+recipient:
+
+    * id                INT             PRIMARY KEY, AUTO INCREMENT,
+    * name              VARCHAR(50)     NOT NULL,
+    * address_id        INT             FOREIGN KEY (Reference table address column id),
+    * mobile            BIGINT          NOT NULL,
+    * hospital_id       INT             FOREIGN KEY (Reference table hospital column id),
+    * date              DATE            NOT NULL
+    

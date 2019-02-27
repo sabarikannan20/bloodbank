@@ -1,0 +1,45 @@
+/***************************************************************Blood Bank Application (Breakdown structure)****************************************************************************/
+
+High level requirements:
+
+    * Signup
+    * Login
+    * Add donor
+    * Request blood 
+    * Manage blood stock
+    * Maintain recipient detail
+
+Low level requirements:
+
+    * Signup:
+
+        - User can register into application by providing basic details such as first name, last name, mobile, email etc.,
+        - User whose age is lesser than 17 cannot enroll into the application.
+        - Once the user registered, they can add any member as donor.
+        - Password entered while registration should be stored in the encrypted format.
+
+    * Login:
+
+        - User can login by entering any of the details such as mobile, email or username and password.
+        - Once the user logged out, last logged in time should be updated in user table and shall be displayed while the logging in for the next time.
+
+    * Add donor:
+
+        - Registered user can add donor or make himself/herself as a donor.
+        - Once the donor is added, donor's created by and created time should be tracked.
+
+    * Request blood:
+
+        - Registered user or donor can request for blood by providing blood details.
+        - While requesting for blood, compatibility of the particular blood can also be opted.
+        - Once the request is raised, the list donors who donated blood within minimum period of three months before will be displayed.
+
+    * Manage blood stock:
+
+        - Blood availability in the blood bank for the individual blood group is maintained.
+        - Blood stored date, expiry date, and available units will be displayed.
+
+    Maintain recipient detail:
+
+        - Recipient details such as name, address and the hospital name shall be recorded.
+        - Date should be updated once the recipient received blood.
